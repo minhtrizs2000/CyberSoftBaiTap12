@@ -34,27 +34,33 @@ function DanhSachNhanVien(){
         }
     }
 
-    this.capNhatNV = function(tk){
-        var viTri = this.timViTri(tk.taiKhoan);
+    this.layNV = function(tk){
+        var viTri = this.timViTri(tk);
         if(viTri >= 0){
-            this.mangNV[viTri] = tk;
+            return this.mangNV[viTri];
         }
     }
+
+    this.capNhatNV = function(tk,nv){
+        var viTri = this.timViTri(tk);
+        this.mangNV[viTri] = nv;
+    }
+
 }
 
 //Prototype: giúp thêm property, method vào trong classObject mà k cần chỉnh sửa trực tiếp
-// DanhSachSinhVien.prototype.timKiemSV = function(chuoiTK){
-//     var mangKQ = [];
-//     var chuoiThuong = chuoiTK.toLowerCase();
+DanhSachNhanVien.prototype.timKiemNV = function(chuoiKT){
+    var mangKQ = [];
+    var chuoiThuong = chuoiKT.toLowerCase();
 
-//     this.mangSV.map(function(item, index){
-//         var tenThuong = item.tenSV.toLowerCase();
-//         var viTriChu = tenThuong.indexOf(chuoiThuong);
+    this.mangNV.map(function(item, index){
+        var tenThuong = item.loaiNhanVien.toLowerCase();
+        var viTriChuoi = tenThuong.indexOf(chuoiThuong);
 
-//         if(viTriChu >= 0){
-//             mangKQ.push(item);
-//         }
-//     });
+        if(viTriChuoi >= 0){
+            mangKQ.push(item);
+        }
+    });
 
-//     return mangKQ;
-// }
+    return mangKQ;
+}

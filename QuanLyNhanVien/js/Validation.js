@@ -34,6 +34,26 @@ function Validation(){
         }
     }
 
+    this.checkTKisExist = function(inputVal, spandID, message, mangNhanVien){
+        //Kiểm tra mã có tồn tại trong mảng nv chưa?
+        var isExist = false;
+
+        //some: duyệt mảng + return kq so sánh (true/false)
+        isExist = mangNhanVien.some(function(item){
+            return item.taiKhoan === inputVal;
+        });
+
+        if(isExist){
+            //nếu isExist == true => mã bị trùng
+            document.getElementById(spandID).innerHTML = "";
+            return true;
+        }else{
+            //Mã không trùng => hợp lệ
+            document.getElementById(spandID).innerHTML = message;
+            return false;
+        }
+    }
+
     this.checkNum = function(inputVal, spandID, message){
         var taiKhoanPattern = new RegExp("^[0-9]+$");
 
